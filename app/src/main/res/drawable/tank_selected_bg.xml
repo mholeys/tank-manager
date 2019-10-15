@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke
+        android:width="@dimen/selected_tank_border_width"
+        android:color="@color/colorAccent"
+        />
+    <padding
+        android:left="@dimen/selected_tank_border_width"
+        android:top="@dimen/selected_tank_border_width"
+        android:right="@dimen/selected_tank_border_width"
+        android:bottom="@dimen/selected_tank_border_width"
+        />
+</shape>

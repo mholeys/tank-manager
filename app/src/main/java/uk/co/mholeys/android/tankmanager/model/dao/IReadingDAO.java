@@ -16,13 +16,13 @@ import uk.co.mholeys.android.tankmanager.model.entity.Readings;
 public interface IReadingDAO {
 
     @Insert
-    LiveData<Long[]> insertMany(Readings... readings);
+    long[] insertMany(Readings... readings);
 
     @Insert
-    LiveData<Long[]> insertMany(List<Readings> readings);
+    long[] insertMany(List<Readings> readings);
 
     @Insert
-    LiveData<Long> insert(Readings readings);
+    long insert(Readings readings);
 
     @Update
     void update(Readings readings);

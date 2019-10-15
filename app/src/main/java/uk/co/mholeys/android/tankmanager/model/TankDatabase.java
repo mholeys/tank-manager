@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import uk.co.mholeys.android.tankmanager.model.dao.IEquipmentDAO;
@@ -16,8 +17,23 @@ import uk.co.mholeys.android.tankmanager.model.entity.Equipment;
 import uk.co.mholeys.android.tankmanager.model.entity.Maintenance;
 import uk.co.mholeys.android.tankmanager.model.entity.Readings;
 import uk.co.mholeys.android.tankmanager.model.entity.Tank;
+import uk.co.mholeys.android.tankmanager.model.typeconverters.DateTimeTypeConverter;
+import uk.co.mholeys.android.tankmanager.model.typeconverters.MaintenanceEnumTypeConverter;
+import uk.co.mholeys.android.tankmanager.model.typeconverters.TankTypeEnumTypeConverter;
 
-@Database(entities = {Tank.class, Equipment.class, Maintenance.class, Readings.class}, version = 1, exportSchema =  true)
+@Database(entities = {
+            Tank.class,
+            Equipment.class,
+            Maintenance.class,
+            Readings.class
+        },
+        version = 1
+)
+@TypeConverters({
+        MaintenanceEnumTypeConverter.class,
+        DateTimeTypeConverter.class,
+        TankTypeEnumTypeConverter.class
+})
 public abstract class TankDatabase extends RoomDatabase {
 
     public abstract IEquipmentDAO equipmentDao();

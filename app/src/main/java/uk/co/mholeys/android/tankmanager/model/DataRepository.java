@@ -2,6 +2,9 @@ package uk.co.mholeys.android.tankmanager.model;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -9,6 +12,9 @@ import uk.co.mholeys.android.tankmanager.model.dao.IEquipmentDAO;
 import uk.co.mholeys.android.tankmanager.model.dao.IMaintenanceDAO;
 import uk.co.mholeys.android.tankmanager.model.dao.IReadingDAO;
 import uk.co.mholeys.android.tankmanager.model.dao.ITankDAO;
+import uk.co.mholeys.android.tankmanager.model.entity.Equipment;
+import uk.co.mholeys.android.tankmanager.model.entity.Maintenance;
+import uk.co.mholeys.android.tankmanager.model.entity.Readings;
 import uk.co.mholeys.android.tankmanager.model.entity.Tank;
 
 public class DataRepository {
@@ -43,5 +49,28 @@ public class DataRepository {
         }
         return instance;
     }
+
+    public LiveData<List<Tank>> getTanks() {
+        return tankDao.getAll();
+    }
+
+    public LiveData<Tank> getTank(int tankId) {
+        return tankDao.get(tankId);
+    }
+
+    public LiveData<List<Equipment>> getTankEquipment(int tankId) {
+        return equipmentDao.getEquipmentOfTank(tankId);
+    }
+
+    public LiveData<List<Maintenance>> getTankMaintenance(int tankId) {
+        return maintenanceDao.getMaintenanceDoneOnTank(tankId);
+    }
+
+    public LiveData<List<Readings>> getTankReadings(int tankId) {
+        return readingDao.getReadingsOfTank(tankId);
+    }
+
+
+
 
 }

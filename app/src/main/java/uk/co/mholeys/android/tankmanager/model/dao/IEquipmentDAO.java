@@ -15,13 +15,13 @@ import uk.co.mholeys.android.tankmanager.model.entity.Equipment;
 public interface IEquipmentDAO {
 
     @Insert
-    LiveData<Long[]> insertMany(Equipment... equipment);
+    long[] insertMany(Equipment... equipment);
 
     @Insert
-    LiveData<Long[]> insertMany(List<Equipment> equipment);
+    long[] insertMany(List<Equipment> equipment);
 
     @Insert
-    LiveData<Long> insert(Equipment equipment);
+    long insert(Equipment equipment);
 
     @Update
     void update(Equipment equipment);

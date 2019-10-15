@@ -3,6 +3,7 @@ package uk.co.mholeys.android.tankmanager.model.entity;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "equipment",
@@ -12,7 +13,10 @@ import androidx.room.PrimaryKey;
                 parentColumns = "tId",
                 childColumns = "tankId",
                 onDelete = ForeignKey.CASCADE
-        ))
+        ),
+        indices = {
+                @Index(value = "tankId", unique = true)
+        })
 public class Equipment {
 
     @PrimaryKey

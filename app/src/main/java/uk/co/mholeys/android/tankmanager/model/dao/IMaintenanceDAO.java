@@ -15,13 +15,13 @@ import uk.co.mholeys.android.tankmanager.model.entity.Maintenance;
 public interface IMaintenanceDAO {
 
     @Insert
-    LiveData<Long[]> insertMany(Maintenance... maintenance);
+    long[] insertMany(Maintenance... maintenance);
 
     @Insert
-    LiveData<Long[]> insertMany(List<Maintenance> maintenance);
+    long[] insertMany(List<Maintenance> maintenance);
 
     @Insert
-    LiveData<Long> insert(Maintenance maintenance);
+    long insert(Maintenance maintenance);
 
     @Update
     void update(Maintenance maintenance);

@@ -15,13 +15,13 @@ import uk.co.mholeys.android.tankmanager.model.entity.Tank;
 public interface ITankDAO {
 
     @Insert
-    LiveData<Long[]> insertMany(Tank... tanks);
+    long[] insertMany(Tank... tanks);
 
     @Insert
-    LiveData<Long[]> insertMany(List<Tank> tanks);
+    long[] insertMany(List<Tank> tanks);
 
     @Insert
-    LiveData<Long> insert(Tank tank);
+    long insert(Tank tank);
 
     @Update
     void update(Tank tank);
@@ -35,10 +35,10 @@ public interface ITankDAO {
     @Delete
     void deleteMany(List<Tank> tanks);
 
-    @Query("SELECT * FROM Tank WHERE tankId = :id;")
-    LiveData<Tank> get(long id);
+    @Query("SELECT * FROM Tank WHERE tId = :id;")
+    LiveData<Tank> get(int id);
 
-    @Query("SELECT * FROM Tank ORDER BY tankId;")
+    @Query("SELECT * FROM Tank ORDER BY tId;")
     LiveData<List<Tank>> getAll();
 
 
