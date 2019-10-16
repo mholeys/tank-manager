@@ -36,7 +36,7 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
     private List<Tank> mTanks = new ArrayList<>();
     private ActionMode mActionMode;
     private List<OnItemClickListener> clickListeners = new ArrayList<>();
-    private SelectionTracker<Integer> mSelectionTracker;
+    private SelectionTracker<Long> mSelectionTracker;
 
     public TankListAdapter(FragmentActivity activity, TankListViewModel imageListViewModel) {
         super();
@@ -71,9 +71,9 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
         }
 
         // Keep selection border up-to-date
-        mSelectionTracker.addObserver(new SelectionTracker.SelectionObserver<Integer>() {
+        mSelectionTracker.addObserver(new SelectionTracker.SelectionObserver<Long>() {
             @Override
-            public void onItemStateChanged(@NonNull Integer key, boolean selected) {
+            public void onItemStateChanged(@NonNull Long key, boolean selected) {
                 super.onItemStateChanged(key, selected);
                 if (key == holder.id) {
                     if (selected) {
@@ -117,7 +117,7 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
 
                     @Override
                     public boolean onActionItemClicked(final ActionMode mode, final MenuItem item) {
-                        final Selection<Integer> selection = mSelectionTracker.getSelection();
+                        final Selection<Long> selection = mSelectionTracker.getSelection();
                         switch (item.getItemId()) {
                             case R.id.action_bar_delete:
                                 new AlertDialog.Builder(mActivity)
@@ -131,7 +131,7 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
                                                         Toast.LENGTH_LONG).show();
                                                 Tank[] tanksToDelete = new Tank[selection.size()];
                                                 int i = 0;
-                                                for (int id : selection) {
+                                                for (Long id : selection) {
                                                     int pos = getPositionOfTank(id);
                                                     tanksToDelete[i] = mTanks.get(pos);
                                                     i++;
@@ -174,7 +174,7 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
         diffResult.dispatchUpdatesTo(this);
     }
 
-    public int getPositionOfTank(int id) {
+    public int getPositionOfTank(long id) {
         for (int i = 0; i < mTanks.size(); i++) {
             Tank image = mTanks.get(i);
             if (image.getId() == id) {
@@ -203,7 +203,7 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
         }
     }
 
-    public void setSelectionTracker(SelectionTracker<Integer> selectionTracker) {
+    public void setSelectionTracker(SelectionTracker<Long> selectionTracker) {
         this.mSelectionTracker = selectionTracker;
         this.mSelectionTracker.addObserver(new SelectionTracker.SelectionObserver() {
             @Override
@@ -224,7 +224,7 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
 
     @Override
     public long getItemId(int position) {
-        return mTanks.get(position).getId();
+        return mTanks.get((int)position).getId();
     }
 
 }

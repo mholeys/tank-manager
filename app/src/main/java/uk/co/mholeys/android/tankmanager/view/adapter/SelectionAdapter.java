@@ -11,10 +11,10 @@ import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class SelectionAdapter {
-    public static class Predicate extends SelectionTracker.SelectionPredicate<Integer> {
+    public static class Predicate extends SelectionTracker.SelectionPredicate<Long> {
 
         @Override
-        public boolean canSetStateForKey(@NonNull Integer id, boolean newState) {
+        public boolean canSetStateForKey(@NonNull Long id, boolean newState) {
             return true;
         }
 
@@ -29,7 +29,7 @@ public class SelectionAdapter {
         }
     }
 
-    public static class KeyProvider extends ItemKeyProvider<Integer> {
+    public static class KeyProvider extends ItemKeyProvider<Long> {
 
         private final TankListAdapter mAdapter;
         RecyclerView mRecyclerView;
@@ -42,12 +42,12 @@ public class SelectionAdapter {
 
         @Nullable
         @Override
-        public Integer getKey(int position) {
-            return Math.toIntExact(mAdapter.getItemId(position));
+        public Long getKey(int position) {
+            return mAdapter.getItemId(position);
         }
 
         @Override
-        public int getPosition(@NonNull Integer id) {
+        public int getPosition(@NonNull Long id) {
             return mAdapter.getPositionOfTank(id);
         }
     }
