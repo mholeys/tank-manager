@@ -36,7 +36,7 @@ public interface ITankDAO {
     void deleteMany(List<Tank> tanks);
 
     @Query("SELECT * FROM Tank WHERE tId = :id;")
-    LiveData<Tank> get(int id);
+    LiveData<Tank> get(long id);
 
     @Query("SELECT * FROM Tank ORDER BY tId;")
     LiveData<List<Tank>> getAll();

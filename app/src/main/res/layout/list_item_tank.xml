@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/tank_item_thumb"
         android:layout_width="@dimen/tank_thumbnail_width"
-        android:layout_height="match_parent"
+        android:layout_height="60dp"
         android:layout_weight="1"
         app:srcCompat="@drawable/default_photo_48dp" />
 

@@ -16,4 +16,21 @@
     <string name="app_name">Tank Manager</string>
     <string name="remove_tank">Remove tank</string>
     <string name="search">Search</string>
+    <string name="no_tanks_found">No tanks found</string>
+    <string name="tank_default_title">My Tank</string>
+    <string name="tank_default_size">300</string>
+    <string name="tank_default_size_unit">Litres</string>
+    <string name="tank_default_type">Marine</string>
+    <string name="add">Add</string>
+
+    <!--  The order needs to be the same as the enum order  -->
+    <string-array name="tank_types_array">
+        <item>Marine</item>
+        <item>Cold water</item>
+        <item>Pond</item>
+        <item>Tropical</item>
+        <item>Brackish</item>
+        <item>Other</item>
+    </string-array>
+
 </resources>

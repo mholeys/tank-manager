@@ -19,9 +19,9 @@ public class TankViewHolder extends RecyclerView.ViewHolder {
 
     private final ItemDetailsLookup.ItemDetails<Long> mItemDetails;
     long id;
-    private final ImageView mThumbnailView;
-    private final TextView mTitleTextView;
-    private final TextView mInfoTextView;
+    public final ImageView mThumbnailView;
+    public final TextView mTitleTextView;
+    public final TextView mInfoTextView;
     public Tank mTank;
 
     public TankViewHolder(@NonNull View itemView) {

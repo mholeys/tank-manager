@@ -1,0 +1,319 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "5ed09a613fc94577e8a3ac7fb312d180",
+    "entities": [
+      {
+        "tableName": "Tank",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`tId` INTEGER NOT NULL, `name` TEXT, `size` TEXT, `units` TEXT, `type` TEXT, PRIMARY KEY(`tId`))",
+        "fields": [
+          {
+            "fieldPath": "tId",
+            "columnName": "tId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "size",
+            "columnName": "size",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "units",
+            "columnName": "units",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "tId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "equipment",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`equipmentId` INTEGER NOT NULL, `name` TEXT, `type` TEXT, `tankId` INTEGER NOT NULL, PRIMARY KEY(`equipmentId`), FOREIGN KEY(`tankId`) REFERENCES `Tank`(`tId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "equipmentId",
+            "columnName": "equipmentId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tankId",
+            "columnName": "tankId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "equipmentId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_equipment_tankId",
+            "unique": true,
+            "columnNames": [
+              "tankId"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_equipment_tankId` ON `${TABLE_NAME}` (`tankId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Tank",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "tankId"
+            ],
+            "referencedColumns": [
+              "tId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "maintenance",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`maintenanceId` INTEGER NOT NULL, `date_done` TEXT, `type` TEXT, `notes` TEXT, `tankId` INTEGER NOT NULL, PRIMARY KEY(`maintenanceId`), FOREIGN KEY(`tankId`) REFERENCES `Tank`(`tId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "maintenanceId",
+            "columnName": "maintenanceId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date_done",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tankId",
+            "columnName": "tankId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "maintenanceId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_maintenance_tankId",
+            "unique": true,
+            "columnNames": [
+              "tankId"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_maintenance_tankId` ON `${TABLE_NAME}` (`tankId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Tank",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "tankId"
+            ],
+            "referencedColumns": [
+              "tId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "readings",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`readingId` INTEGER NOT NULL, `date_taken` TEXT, `PH` REAL NOT NULL, `GH` REAL NOT NULL, `KH` REAL NOT NULL, `O2` REAL NOT NULL, `CO2` REAL NOT NULL, `amonia` REAL NOT NULL, `nitrite` REAL NOT NULL, `nitrate` REAL NOT NULL, `magnesium` REAL NOT NULL, `phosphate` REAL NOT NULL, `calcium` REAL NOT NULL, `copper` REAL NOT NULL, `salinity` REAL NOT NULL, `iron` REAL NOT NULL, `tankId` INTEGER NOT NULL, PRIMARY KEY(`readingId`), FOREIGN KEY(`tankId`) REFERENCES `Tank`(`tId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "readingId",
+            "columnName": "readingId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date_taken",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "PH",
+            "columnName": "PH",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "GH",
+            "columnName": "GH",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "KH",
+            "columnName": "KH",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "O2",
+            "columnName": "O2",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "CO2",
+            "columnName": "CO2",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amonia",
+            "columnName": "amonia",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nitrite",
+            "columnName": "nitrite",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nitrate",
+            "columnName": "nitrate",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "magnesium",
+            "columnName": "magnesium",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phosphate",
+            "columnName": "phosphate",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "calcium",
+            "columnName": "calcium",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "copper",
+            "columnName": "copper",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "salinity",
+            "columnName": "salinity",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "iron",
+            "columnName": "iron",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tankId",
+            "columnName": "tankId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "readingId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_readings_tankId",
+            "unique": true,
+            "columnNames": [
+              "tankId"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_readings_tankId` ON `${TABLE_NAME}` (`tankId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Tank",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "tankId"
+            ],
+            "referencedColumns": [
+              "tId"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5ed09a613fc94577e8a3ac7fb312d180')"
+    ]
+  }
+}

@@ -27,18 +27,20 @@ public class TankListViewModel extends AndroidViewModel {
         return dataRepository.getTanks();
     }
 
-    public LiveData<Tank> get(int id) {
+    public LiveData<Tank> get(long id) {
         return dataRepository.getTank(id);
     }
 
-    public MutableLiveData<Long> insertTank(Tank image) {
-        // TODO:
-        Log.d(TAG, "insertTank: Not implemented");
-        return null;
-        //return dataRepository.insertTank(image);
+    public MutableLiveData<Long> insertTank(Tank tank) {
+        return dataRepository.insertTank(tank);
     }
 
     public void deleteTanks(Tank[] tanksToDelete) {
         Log.d(TAG, "deleteTanks: Not implemented");
+    }
+
+    public LiveData<List<Tank>> getTanksToDisplay(String query) {
+        Log.e(TAG, "getTanksToDisplay: Search not implemented");
+        return dataRepository.getTanks();
     }
 }

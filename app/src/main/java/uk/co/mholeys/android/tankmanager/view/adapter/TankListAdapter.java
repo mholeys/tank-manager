@@ -7,7 +7,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -62,6 +61,9 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
         final Tank tank = mTanks.get(position);
         holder.id = tank.getId();
         holder.mTank = tank;
+        holder.mTitleTextView.setText(tank.name);
+        holder.mInfoTextView.setText(tank.size + " " + tank.units + " ("  + tank.type.toString() + ")");
+
 
         // Draw selected border if selected
         if (mSelectionTracker.isSelected(tank.getId())) {
@@ -106,7 +108,7 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
                     @Override
                     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                         MenuInflater inflater = mode.getMenuInflater();
-                        inflater.inflate(R.menu.menu_image_list_context_action, menu);
+                        inflater.inflate(R.menu.menu_tank_list_context_action, menu);
                         return true;
                     }
 

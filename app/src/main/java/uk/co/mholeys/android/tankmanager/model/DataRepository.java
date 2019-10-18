@@ -3,6 +3,7 @@ package uk.co.mholeys.android.tankmanager.model;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -54,7 +55,7 @@ public class DataRepository {
         return tankDao.getAll();
     }
 
-    public LiveData<Tank> getTank(int tankId) {
+    public LiveData<Tank> getTank(long tankId) {
         return tankDao.get(tankId);
     }
 
@@ -70,7 +71,15 @@ public class DataRepository {
         return readingDao.getReadingsOfTank(tankId);
     }
 
-
-
-
+    public MutableLiveData<Long> insertTank(final Tank tank) {
+        final MutableLiveData<Long> tankIdLiveData = new MutableLiveData<>();
+        mExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                long tankId = tankDao.insert(tank);
+                tankIdLiveData.postValue(tankId);
+            }
+        });
+        return tankIdLiveData;
+    }
 }
