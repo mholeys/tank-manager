@@ -43,4 +43,8 @@ public class TankListViewModel extends AndroidViewModel {
         Log.e(TAG, "getTanksToDisplay: Search not implemented");
         return dataRepository.getTanks();
     }
+
+    public void updateTank(Tank tank) {
+        dataRepository.updateTank(tank);
+    }
 }

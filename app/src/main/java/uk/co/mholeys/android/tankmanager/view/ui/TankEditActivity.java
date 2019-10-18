@@ -47,30 +47,32 @@ public class TankEditActivity extends AppCompatActivity {
         Intent intent = getIntent();
         mTankId = intent.getLongExtra(EXTRA_ID, 0);
         final int mode = intent.getIntExtra(EXTRA_MODE, 0);
-        if (mode == EXTRA_MODE_CREATE) {
-            mTank = new Tank();
-        }
-        setupViewModel();
 
         mTankTitleEditText = findViewById(R.id.tank_name_edit_text);
         mTankTypeSpinner = findViewById(R.id.tank_type_spinner);
         mTankSizeEditText = findViewById(R.id.tank_size_edit_text);
         mTankSizeUnitEditText = findViewById(R.id.tank_size_unit_edit_text);
         mSubmitButton = findViewById(R.id.add_tank_button);
+
+        if (mode == EXTRA_MODE_CREATE) {
+            showTank(new Tank());
+            mSubmitButton.setText(R.string.add);
+        } else {
+            setupViewModel();
+            mSubmitButton.setText(R.string.save);
+        }
+
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Add/Save tank
                 if (mode == EXTRA_MODE_EDIT) {
                     // Update tank
-//                    mViewModel.updateTank();
-                } else if (mode == EXTRA_MODE_CREATE) {
                     // Create new tank and save
                     mTank.name = mTankTitleEditText.getText().toString();
                     mTank.size = mTankSizeEditText.getText().toString();
                     mTank.units = mTankSizeUnitEditText.getText().toString();
 
-                    // TODO: move to utils/enum
                     ETankType tankType = ETankType.OTHER;
                     if (mTankTypeSpinner.getSelectedItemId() < ETankType.values().length) {
                         try {
@@ -81,6 +83,26 @@ public class TankEditActivity extends AppCompatActivity {
                         }
                     }
                     mTank.type = tankType;
+                    mTank.units = mTankSizeUnitEditText.getText().toString();
+                    // TODO!
+                    mViewModel.updateTank(mTank);
+                } else if (mode == EXTRA_MODE_CREATE) {
+                    // Create new tank and save
+                    mTank.name = mTankTitleEditText.getText().toString();
+                    mTank.size = mTankSizeEditText.getText().toString();
+                    mTank.units = mTankSizeUnitEditText.getText().toString();
+
+                    ETankType tankType = ETankType.OTHER;
+                    if (mTankTypeSpinner.getSelectedItemId() < ETankType.values().length) {
+                        try {
+                            tankType = ETankType.values()[(int) mTankTypeSpinner.getSelectedItemId()];
+                        } catch (ArrayIndexOutOfBoundsException e) {
+                            // Type doesnt exist so stick with other
+                            Log.w(TAG, "mSubmitButton.onClick: Failed to determine selected tank type, using ETankType.OTHER");
+                        }
+                    }
+                    mTank.type = tankType;
+                    mTank.units = mTankSizeUnitEditText.getText().toString();
                     mViewModel.insertTank(mTank);
                 }
                 finish();
@@ -113,7 +135,9 @@ public class TankEditActivity extends AppCompatActivity {
         if (tank != null) {
             mTank = tank;
             mTankTitleEditText.setText(mTank.name);
-            mTankTypeSpinner.setSelection(mTank.type.ordinal());
+            if (tank.type != null) {
+                mTankTypeSpinner.setSelection(mTank.type.ordinal());
+            }
             mTankSizeEditText.setText(mTank.size);
         }
     }

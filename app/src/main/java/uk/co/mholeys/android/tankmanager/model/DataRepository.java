@@ -82,4 +82,13 @@ public class DataRepository {
         });
         return tankIdLiveData;
     }
+
+    public void updateTank(final Tank tank) {
+        mExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    tankDao.update(tank);
+                }
+        });
+    }
 }
