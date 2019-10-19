@@ -77,6 +77,7 @@ public class DataRepository {
             @Override
             public void run() {
                 long tankId = tankDao.insert(tank);
+                tank.tId = tankId;
                 tankIdLiveData.postValue(tankId);
             }
         });

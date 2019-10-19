@@ -39,6 +39,8 @@ public class TankDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tank_detail);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent intent = getIntent();
         mTankId = intent.getLongExtra(EXTRA_ID, 0);
         setupViewModel();

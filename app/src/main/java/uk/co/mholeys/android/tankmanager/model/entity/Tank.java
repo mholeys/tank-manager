@@ -9,8 +9,8 @@ import uk.co.mholeys.android.tankmanager.model.ETankType;
 @Entity
 public class Tank {
 
-    @PrimaryKey
-    public long tId;
+    @PrimaryKey(autoGenerate = true)
+    public long tId = 0;
 
     @ColumnInfo(name = "name")
     public String name;

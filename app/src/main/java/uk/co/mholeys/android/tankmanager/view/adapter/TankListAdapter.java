@@ -62,7 +62,8 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
         holder.id = tank.getId();
         holder.mTank = tank;
         holder.mTitleTextView.setText(tank.name);
-        holder.mInfoTextView.setText(tank.size + " " + tank.units + " ("  + tank.type.toString() + ")");
+
+        holder.mInfoTextView.setText(tank.size + " " + tank.units + " ("  + tank.type.toString(mActivity.getResources()) + ")");
 
 
         // Draw selected border if selected

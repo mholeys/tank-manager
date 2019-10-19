@@ -1,5 +1,10 @@
 package uk.co.mholeys.android.tankmanager.model;
 
+import android.content.res.Resources;
+import android.util.Log;
+
+import uk.co.mholeys.android.tankmanager.R;
+
 public enum ETankType {
 
     MARINE,
@@ -16,6 +21,17 @@ public enum ETankType {
             }
         }
         return ETankType.OTHER;
+    }
+
+    public String toString(Resources resources) {
+        int o = this.ordinal();
+        String s = null;
+        try {
+            s = resources.getStringArray(R.array.tank_types_array)[o];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            s = "Other";
+        }
+        return s;
     }
 
 }

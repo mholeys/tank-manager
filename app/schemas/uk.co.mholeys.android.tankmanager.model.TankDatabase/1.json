@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5ed09a613fc94577e8a3ac7fb312d180",
+    "identityHash": "5f17d80642039384b0456fe37a22671f",
     "entities": [
       {
         "tableName": "Tank",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`tId` INTEGER NOT NULL, `name` TEXT, `size` TEXT, `units` TEXT, `type` TEXT, PRIMARY KEY(`tId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`tId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `size` TEXT, `units` TEXT, `type` TEXT)",
         "fields": [
           {
             "fieldPath": "tId",
@@ -43,7 +43,7 @@
           "columnNames": [
             "tId"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
@@ -313,7 +313,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5ed09a613fc94577e8a3ac7fb312d180')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5f17d80642039384b0456fe37a22671f')"
     ]
   }
 }
