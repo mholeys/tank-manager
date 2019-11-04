@@ -27,8 +27,16 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="discard">Discard</string>
+    <string name="last_maintenance">Last Maintenance:</string>
+    <string name="next_water_change">Next water change:</string>
+    <string name="next_task">Next task:</string>
+    <string name="failed_to_load">Failed to load information</string>
+    <string name="no_maintenance_done">No maintenance done</string>
+    <string name="no_scheduled_water_changes">No water changes scheduled</string>
+    <string name="no_scheduled_maintenance">No maintenance scheduled</string>
 
     <!--  The order needs to be the same as the enum order  -->
+    <string name="title_activity_maintenance">MaintenanceActivity</string>
     <string-array name="tank_types_array">
         <item>Marine</item>
         <item>Cold water</item>

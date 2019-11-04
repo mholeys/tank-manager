@@ -12,10 +12,12 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import uk.co.mholeys.android.tankmanager.model.dao.IEquipmentDAO;
 import uk.co.mholeys.android.tankmanager.model.dao.IMaintenanceDAO;
 import uk.co.mholeys.android.tankmanager.model.dao.IReadingDAO;
+import uk.co.mholeys.android.tankmanager.model.dao.IScheduledMaintenanceDAO;
 import uk.co.mholeys.android.tankmanager.model.dao.ITankDAO;
 import uk.co.mholeys.android.tankmanager.model.entity.Equipment;
 import uk.co.mholeys.android.tankmanager.model.entity.Maintenance;
 import uk.co.mholeys.android.tankmanager.model.entity.Readings;
+import uk.co.mholeys.android.tankmanager.model.entity.ScheduledMaintenance;
 import uk.co.mholeys.android.tankmanager.model.entity.Tank;
 import uk.co.mholeys.android.tankmanager.model.typeconverters.DateTimeTypeConverter;
 import uk.co.mholeys.android.tankmanager.model.typeconverters.MaintenanceEnumTypeConverter;
@@ -25,6 +27,7 @@ import uk.co.mholeys.android.tankmanager.model.typeconverters.TankTypeEnumTypeCo
             Tank.class,
             Equipment.class,
             Maintenance.class,
+            ScheduledMaintenance.class,
             Readings.class
         },
         version = 1
@@ -38,6 +41,7 @@ public abstract class TankDatabase extends RoomDatabase {
 
     public abstract IEquipmentDAO equipmentDao();
     public abstract IMaintenanceDAO maintenanceDao();
+    public abstract IScheduledMaintenanceDAO scheduledMaintenanceDao();
     public abstract IReadingDAO readingDao();
     public abstract ITankDAO tankDao();
 

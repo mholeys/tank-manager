@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ui.TankDetailActivity"/>
-        <activity android:name=".view.ui.TankEditActivity"/>
+        <activity android:name=".view.ui.MaintenanceActivity"></activity>
+        <activity android:name=".view.ui.TankDetailActivity" />
+        <activity android:name=".view.ui.TankEditActivity" />
         <activity android:name=".view.ui.TankListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

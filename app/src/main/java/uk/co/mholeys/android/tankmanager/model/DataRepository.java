@@ -12,10 +12,12 @@ import java.util.concurrent.Executors;
 import uk.co.mholeys.android.tankmanager.model.dao.IEquipmentDAO;
 import uk.co.mholeys.android.tankmanager.model.dao.IMaintenanceDAO;
 import uk.co.mholeys.android.tankmanager.model.dao.IReadingDAO;
+import uk.co.mholeys.android.tankmanager.model.dao.IScheduledMaintenanceDAO;
 import uk.co.mholeys.android.tankmanager.model.dao.ITankDAO;
 import uk.co.mholeys.android.tankmanager.model.entity.Equipment;
 import uk.co.mholeys.android.tankmanager.model.entity.Maintenance;
 import uk.co.mholeys.android.tankmanager.model.entity.Readings;
+import uk.co.mholeys.android.tankmanager.model.entity.ScheduledMaintenance;
 import uk.co.mholeys.android.tankmanager.model.entity.Tank;
 
 public class DataRepository {
@@ -27,6 +29,7 @@ public class DataRepository {
     // Dao's
     private final IEquipmentDAO equipmentDao;
     private final IMaintenanceDAO maintenanceDao;
+    private final IScheduledMaintenanceDAO scheduledMaintenanceDao;
     private final IReadingDAO readingDao;
     private final ITankDAO tankDao;
 
@@ -37,6 +40,7 @@ public class DataRepository {
         // Setup database
         this.equipmentDao = TankDatabase.getDatabase(context).equipmentDao();
         this.maintenanceDao = TankDatabase.getDatabase(context).maintenanceDao();
+        this.scheduledMaintenanceDao = TankDatabase.getDatabase(context).scheduledMaintenanceDao();
         this.readingDao = TankDatabase.getDatabase(context).readingDao();
         this.tankDao = TankDatabase.getDatabase(context).tankDao();
 
@@ -91,5 +95,21 @@ public class DataRepository {
                     tankDao.update(tank);
                 }
         });
+    }
+
+    public LiveData<List<Maintenance>> getMaintenanceDone(long tankId) {
+        return maintenanceDao.getMaintenanceDoneOnTank(tankId);
+    }
+
+    public LiveData<Maintenance> getLastMaintenance(long tankId) {
+        return maintenanceDao.getLastMaintenanceDoneOnTank(tankId);
+    }
+
+    public LiveData<ScheduledMaintenance> getNextMaintenance(long tankId) {
+        return scheduledMaintenanceDao.getNextMaintenanceToDoOnTank(tankId);
+    }
+
+    public LiveData<ScheduledMaintenance> getNextWaterChange(long tankId) {
+        return scheduledMaintenanceDao.getNextTypeOnTank(tankId, EMaintenanceType.WATER_CHANGE);
     }
 }

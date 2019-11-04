@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5f17d80642039384b0456fe37a22671f",
+    "identityHash": "40d8a0df42787bc09abb2fd4c4ccbba7",
     "entities": [
       {
         "tableName": "Tank",
@@ -173,6 +173,71 @@
         ]
       },
       {
+        "tableName": "scheduled_maintenance",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scheduleId` INTEGER NOT NULL, `date_scheduled` TEXT, `type` TEXT, `notes` TEXT, `tankId` INTEGER NOT NULL, PRIMARY KEY(`scheduleId`), FOREIGN KEY(`tankId`) REFERENCES `Tank`(`tId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "scheduleId",
+            "columnName": "scheduleId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date_scheduled",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tankId",
+            "columnName": "tankId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "scheduleId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_scheduled_maintenance_tankId",
+            "unique": true,
+            "columnNames": [
+              "tankId"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_scheduled_maintenance_tankId` ON `${TABLE_NAME}` (`tankId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Tank",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "tankId"
+            ],
+            "referencedColumns": [
+              "tId"
+            ]
+          }
+        ]
+      },
+      {
         "tableName": "readings",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`readingId` INTEGER NOT NULL, `date_taken` TEXT, `PH` REAL NOT NULL, `GH` REAL NOT NULL, `KH` REAL NOT NULL, `O2` REAL NOT NULL, `CO2` REAL NOT NULL, `amonia` REAL NOT NULL, `nitrite` REAL NOT NULL, `nitrate` REAL NOT NULL, `magnesium` REAL NOT NULL, `phosphate` REAL NOT NULL, `calcium` REAL NOT NULL, `copper` REAL NOT NULL, `salinity` REAL NOT NULL, `iron` REAL NOT NULL, `tankId` INTEGER NOT NULL, PRIMARY KEY(`readingId`), FOREIGN KEY(`tankId`) REFERENCES `Tank`(`tId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
@@ -313,7 +378,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5f17d80642039384b0456fe37a22671f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '40d8a0df42787bc09abb2fd4c4ccbba7')"
     ]
   }
 }

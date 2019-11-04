@@ -5,10 +5,12 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.RawQuery;
 import androidx.room.Update;
 
 import java.util.List;
 
+import uk.co.mholeys.android.tankmanager.model.EMaintenanceType;
 import uk.co.mholeys.android.tankmanager.model.entity.Maintenance;
 
 @Dao
@@ -38,10 +40,15 @@ public interface IMaintenanceDAO {
     @Query("SELECT * FROM maintenance WHERE maintenanceId = :id;")
     LiveData<Maintenance> get(long id);
 
-    @Query("SELECT * FROM maintenance ORDER BY maintenanceId;")
+    @Query("SELECT * FROM maintenance ORDER BY date_done;")
     LiveData<List<Maintenance>> getAll();
 
     @Query("SELECT * FROM maintenance WHERE tankId=:tankId")
-    LiveData<List<Maintenance>> getMaintenanceDoneOnTank(final int tankId);
+    LiveData<List<Maintenance>> getMaintenanceDoneOnTank(final long tankId);
 
+    @Query("SELECT * FROM maintenance WHERE tankId=:tankId ORDER BY date_done ASC LIMIT 1")
+    LiveData<Maintenance> getLastMaintenanceDoneOnTank(long tankId);
+
+    @Query("SELECT * FROM maintenance WHERE tankId=:tankId AND type=:type ORDER BY date_done ASC LIMIT 1")
+    LiveData<Maintenance> getNextTypeOnTank(long tankId, EMaintenanceType type);
 }
