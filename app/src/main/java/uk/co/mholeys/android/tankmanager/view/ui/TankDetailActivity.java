@@ -3,6 +3,9 @@ package uk.co.mholeys.android.tankmanager.view.ui;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -13,9 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import uk.co.mholeys.android.tankmanager.Options;
 import uk.co.mholeys.android.tankmanager.R;
 import uk.co.mholeys.android.tankmanager.model.entity.Tank;
 import uk.co.mholeys.android.tankmanager.viewmodel.TankListViewModel;
@@ -50,6 +55,16 @@ public class TankDetailActivity extends AppCompatActivity {
         mTankSizeTextView = findViewById(R.id.tank_size_text_view);
         mTankSizeUnitTextView = findViewById(R.id.tank_size_unit_text_view);
 
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        Fragment fragment = null;
+//        if (Options.USE_TAB_FOR_MAINTENANCE_VIEW) {
+//            fragment = MaintenanceTabFragment.newInstance(mTankId);
+//        } else {
+//            fragment = MaintenanceSummaryFragment.newInstance(mTankId);
+//        }
+//        fragmentTransaction.add(R.id.maintenance_fragment, fragment);
+//        fragmentTransaction.commit();
     }
 
     private void setupViewModel() {

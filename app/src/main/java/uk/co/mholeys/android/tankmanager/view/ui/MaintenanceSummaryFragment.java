@@ -22,6 +22,8 @@ import uk.co.mholeys.android.tankmanager.viewmodel.MaintenanceSummaryViewModel;
 
 public class MaintenanceSummaryFragment extends Fragment {
 
+    private static final String ARG_TANK_ID = "MAINTENANCE_SUMMARY_FRAGMENT._ARG_TANK_ID";
+
     private MaintenanceSummaryViewModel mViewModel;
 
     private TextView lastMaintenanceTypeTextView;
@@ -33,10 +35,17 @@ public class MaintenanceSummaryFragment extends Fragment {
     private TextView lastTextView;
     private TextView nextWaterChangeTextView;
     private TextView nextMaintenanceTextView;
+    private long tankId;
 
-    public static MaintenanceSummaryFragment newInstance() {
-        return new MaintenanceSummaryFragment();
+    public static MaintenanceTabFragment newInstance(long tankId) {
+        MaintenanceTabFragment fragment = new MaintenanceTabFragment();
+        Bundle args = new Bundle();
+        args.putLong(ARG_TANK_ID, tankId);
+        fragment.setArguments(args);
+        return fragment;
     }
+
+    public MaintenanceSummaryFragment() { }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -48,9 +57,6 @@ public class MaintenanceSummaryFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(MaintenanceSummaryViewModel.class);
-        Intent intent = getActivity().getIntent();
-        final long tankId = intent.getLongExtra(TankDetailActivity.EXTRA_ID, -1);
-
 
         lastMaintenanceTypeTextView = getView().findViewById(R.id.last_maintenance_type_text_view);
         lastMaintenanceDateTextView = getView().findViewById(R.id.last_maintenance_date_text_view);

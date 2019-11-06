@@ -9,6 +9,7 @@ import uk.co.mholeys.android.tankmanager.model.entity.Tank;
 import uk.co.mholeys.android.tankmanager.viewmodel.MaintenanceViewModel;
 import uk.co.mholeys.android.tankmanager.viewmodel.TankListViewModel;
 
+@Deprecated
 public class MaintenanceActivity extends AppCompatActivity {
 
     private static final String TAG = MaintenanceActivity.class.getSimpleName();
@@ -26,7 +27,7 @@ public class MaintenanceActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // TODO: add following
-        // TODO: - way to show history of maintenance (probable tabs for different types in list)
+        // TODO: - way to show history of maintenance (probably tabs for different types in list)
         // TODO: - way to record a done maintenance
         // and then lead into adding next times scheduled
         // TODO: - way to show scheduled maintenance

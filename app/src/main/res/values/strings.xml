@@ -37,6 +37,11 @@
 
     <!--  The order needs to be the same as the enum order  -->
     <string name="title_activity_maintenance">MaintenanceActivity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="readings_fragment_tab_text">Readings</string>
+    <string name="maintenace_history_tab_text">Maintenance</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="tank_types_array">
         <item>Marine</item>
         <item>Cold water</item>
