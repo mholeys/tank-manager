@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ui.MaintenanceTabFragment">
+    tools:context=".view.ui.maintenance.MaintenanceTabFragment">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"

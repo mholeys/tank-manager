@@ -1,4 +1,4 @@
-package uk.co.mholeys.android.tankmanager.view.ui;
+package uk.co.mholeys.android.tankmanager.view.ui.tank;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,14 +9,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.room.PrimaryKey;
 
 import uk.co.mholeys.android.tankmanager.R;
 import uk.co.mholeys.android.tankmanager.model.ETankType;

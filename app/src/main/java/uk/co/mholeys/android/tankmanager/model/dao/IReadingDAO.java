@@ -43,6 +43,6 @@ public interface IReadingDAO {
     LiveData<List<Readings>> getAll();
 
     @Query("SELECT * FROM readings WHERE tankId=:tankId")
-    LiveData<List<Readings>> getReadingsOfTank(final int tankId);
+    LiveData<List<Readings>> getReadingsOfTank(final long tankId);
 
 }

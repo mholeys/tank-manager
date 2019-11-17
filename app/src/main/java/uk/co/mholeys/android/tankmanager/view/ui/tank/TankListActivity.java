@@ -1,4 +1,4 @@
-package uk.co.mholeys.android.tankmanager.view.ui;
+package uk.co.mholeys.android.tankmanager.view.ui.tank;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,7 +40,7 @@ public class TankListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tank_list_activity);
+        setContentView(R.layout.activity_list_tanks);
 
         mViewModel = ViewModelProviders.of(this).get(TankListViewModel.class);
         mRecyclerView = findViewById(R.id.tank_list_recycler_view);

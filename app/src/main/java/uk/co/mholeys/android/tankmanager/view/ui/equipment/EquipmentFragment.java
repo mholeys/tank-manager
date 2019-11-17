@@ -1,4 +1,5 @@
-package uk.co.mholeys.android.tankmanager.view.ui.maintenance;
+package uk.co.mholeys.android.tankmanager.view.ui.equipment;
+
 
 import android.os.Bundle;
 
@@ -8,27 +9,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import uk.co.mholeys.android.tankmanager.AMaintenanceTabFragment;
 import uk.co.mholeys.android.tankmanager.R;
+import uk.co.mholeys.android.tankmanager.view.ui.maintenance.AMaintenanceTabFragment;
 
-public class ReadingsFragment extends AMaintenanceTabFragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link EquipmentFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class EquipmentFragment extends AMaintenanceTabFragment {
 
-    private static final String ARG_TANK_ID = "READINGS_FRAGMENT._ARG_TANK_ID";
+    private static final String ARG_TANK_ID = "EQUIPMENT_FRAGMENT._ARG_TANK_ID";
 
-    private long tankId;
+    private long mTankId;
 
-    public ReadingsFragment() {
+
+    public EquipmentFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public int getTabTextStringResource() {
-        return R.string.readings_fragment_tab_text;
+        return R.string.equipment_fragment_tab_name;
     }
 
-    public static ReadingsFragment newInstance(long tankId) {
-        ReadingsFragment fragment = new ReadingsFragment();
+    public static EquipmentFragment newInstance(long tankId) {
+        EquipmentFragment fragment = new EquipmentFragment();
         Bundle args = new Bundle();
         args.putLong(ARG_TANK_ID, tankId);
         fragment.setArguments(args);
@@ -39,7 +45,7 @@ public class ReadingsFragment extends AMaintenanceTabFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            tankId = getArguments().getLong(ARG_TANK_ID);
+            mTankId = getArguments().getLong(ARG_TANK_ID);
         }
     }
 
@@ -47,6 +53,7 @@ public class ReadingsFragment extends AMaintenanceTabFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_readings, container, false);
+        return inflater.inflate(R.layout.fragment_equipment, container, false);
     }
+
 }

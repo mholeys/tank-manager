@@ -1,4 +1,4 @@
-package uk.co.mholeys.android.tankmanager.view.ui;
+package uk.co.mholeys.android.tankmanager.view.ui.maintenance;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -18,6 +18,7 @@ import android.widget.TextView;
 import uk.co.mholeys.android.tankmanager.R;
 import uk.co.mholeys.android.tankmanager.model.entity.Maintenance;
 import uk.co.mholeys.android.tankmanager.model.entity.ScheduledMaintenance;
+import uk.co.mholeys.android.tankmanager.view.ui.MaintenanceActivity;
 import uk.co.mholeys.android.tankmanager.viewmodel.MaintenanceSummaryViewModel;
 
 public class MaintenanceSummaryFragment extends Fragment {

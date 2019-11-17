@@ -63,15 +63,15 @@ public class DataRepository {
         return tankDao.get(tankId);
     }
 
-    public LiveData<List<Equipment>> getTankEquipment(int tankId) {
+    public LiveData<List<Equipment>> getTankEquipment(long tankId) {
         return equipmentDao.getEquipmentOfTank(tankId);
     }
 
-    public LiveData<List<Maintenance>> getTankMaintenance(int tankId) {
+    public LiveData<List<Maintenance>> getTankMaintenance(long tankId) {
         return maintenanceDao.getMaintenanceDoneOnTank(tankId);
     }
 
-    public LiveData<List<Readings>> getTankReadings(int tankId) {
+    public LiveData<List<Readings>> getTankReadings(long tankId) {
         return readingDao.getReadingsOfTank(tankId);
     }
 

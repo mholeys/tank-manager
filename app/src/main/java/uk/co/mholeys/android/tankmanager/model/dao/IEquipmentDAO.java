@@ -42,6 +42,6 @@ public interface IEquipmentDAO {
     LiveData<List<Equipment>> getAll();
 
     @Query("SELECT * FROM equipment WHERE tankId=:tankId")
-    LiveData<List<Equipment>> getEquipmentOfTank(final int tankId);
+    LiveData<List<Equipment>> getEquipmentOfTank(final long tankId);
 
 }

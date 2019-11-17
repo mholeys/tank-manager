@@ -1,4 +1,4 @@
-package uk.co.mholeys.android.tankmanager.view.ui;
+package uk.co.mholeys.android.tankmanager.view.ui.maintenance;
 
 import androidx.lifecycle.ViewModelProviders;
 

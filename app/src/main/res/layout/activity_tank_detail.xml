@@ -5,7 +5,7 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ui.TankDetailActivity">
+    tools:context=".view.ui.tank.TankDetailActivity">
 
     <TextView
         android:id="@+id/tank_title_text_view"
@@ -82,7 +82,7 @@
 
     <fragment
         android:id="@+id/maintenance_fragment"
-        android:name="uk.co.mholeys.android.tankmanager.view.ui.MaintenanceTabFragment"
+        android:name="uk.co.mholeys.android.tankmanager.view.ui.maintenance.MaintenanceTabFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

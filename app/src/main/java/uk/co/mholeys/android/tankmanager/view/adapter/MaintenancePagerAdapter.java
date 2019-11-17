@@ -8,9 +8,11 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-import uk.co.mholeys.android.tankmanager.AMaintenanceTabFragment;
-import uk.co.mholeys.android.tankmanager.view.ui.maintenance.MaintenanceHistoryFragment;
-import uk.co.mholeys.android.tankmanager.view.ui.maintenance.ReadingsFragment;
+import uk.co.mholeys.android.tankmanager.model.entity.Equipment;
+import uk.co.mholeys.android.tankmanager.view.ui.equipment.EquipmentFragment;
+import uk.co.mholeys.android.tankmanager.view.ui.maintenance.AMaintenanceTabFragment;
+import uk.co.mholeys.android.tankmanager.view.ui.maintenance.history.MaintenanceHistoryFragment;
+import uk.co.mholeys.android.tankmanager.view.ui.maintenance.readings.ReadingsFragment;
 
 public class MaintenancePagerAdapter extends FragmentPagerAdapter {
 
@@ -25,7 +27,7 @@ public class MaintenancePagerAdapter extends FragmentPagerAdapter {
         this.resources = resources;
         pages.add(ReadingsFragment.newInstance(tankId));
         pages.add(MaintenanceHistoryFragment.newInstance(tankId));
-        pages.add(ReadingsFragment.newInstance(tankId));
+        pages.add(EquipmentFragment.newInstance(tankId));
     }
 
     @Override

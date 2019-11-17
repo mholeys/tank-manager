@@ -23,87 +23,91 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.mholeys.android.tankmanager.R;
+import uk.co.mholeys.android.tankmanager.model.entity.Readings;
 import uk.co.mholeys.android.tankmanager.model.entity.Tank;
+import uk.co.mholeys.android.tankmanager.viewmodel.ReadingsListViewModel;
 import uk.co.mholeys.android.tankmanager.viewmodel.TankListViewModel;
 
-public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
+public class ReadingsListAdapter extends RecyclerView.Adapter<ReadingsViewHolder> {
 
-    private static final String TAG = TankListAdapter.class.getSimpleName();
+    private static final String TAG = ReadingsListAdapter.class.getSimpleName();
 
-    private final TankListViewModel mTankListViewModel;
+    private final ReadingsListViewModel mReadingsListViewModel;
+    private final long mTankId;
     private FragmentActivity mActivity;
-    private List<Tank> mTanks = new ArrayList<>();
-    private ActionMode mActionMode;
+    private List<Readings> mReadings = new ArrayList<>();
+//    private ActionMode mActionMode;
     private List<OnItemClickListener> clickListeners = new ArrayList<>();
-    private SelectionTracker<Long> mSelectionTracker;
+//    private SelectionTracker<Long> mSelectionTracker;
 
-    public TankListAdapter(FragmentActivity activity, TankListViewModel tankListViewModel) {
+    public ReadingsListAdapter(FragmentActivity activity, ReadingsListViewModel readingsListViewModel, long tankId) {
         super();
         this.mActivity = activity;
-        this.mTankListViewModel = tankListViewModel;
+        this.mReadingsListViewModel = readingsListViewModel;
+        mTankId = tankId;
         setHasStableIds(true);
     }
 
     @NonNull
     @Override
-    public TankViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ReadingsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflate the layout, initialize the View Holder
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_tank, parent, false);
-        return new TankViewHolder(v);
+                .inflate(R.layout.list_item_readings, parent, false);
+        return new ReadingsViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final TankViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ReadingsViewHolder holder, final int position) {
         // Use the provided View Holder on the onCreateViewHolder method to populate the
         // current row on the RecyclerView
+        // TODO: update to readings
+        final Readings reading = mReadings.get(position);
+        holder.id = reading.readingId;
+//        holder.mTank = mTank;
+//        holder.mTitleTextView.setText(reading.PH + "");
 
-        final Tank tank = mTanks.get(position);
-        holder.id = tank.getId();
-        holder.mTank = tank;
-        holder.mTitleTextView.setText(tank.name);
-
-        holder.mInfoTextView.setText(tank.size + " " + tank.units + " ("  + tank.type.toString(mActivity.getResources()) + ")");
+//        holder.mInfoTextView.setText(mTank.size + " " + tank.units + " ("  + tank.type.toString(mActivity.getResources()) + ")");
 
 
         // Draw selected border if selected
-        if (mSelectionTracker.isSelected(tank.getId())) {
-            holder.itemView.setForeground(mActivity.getDrawable(R.drawable.tank_selected_bg));
-        } else {
-            holder.itemView.setForeground(null);
-        }
+//        if (mSelectionTracker.isSelected(tank.getId())) {
+//            holder.itemView.setForeground(mActivity.getDrawable(R.drawable.tank_selected_bg));
+//        } else {
+//            holder.itemView.setForeground(null);
+//        }
 
         // Keep selection border up-to-date
-        mSelectionTracker.addObserver(new SelectionTracker.SelectionObserver<Long>() {
-            @Override
-            public void onItemStateChanged(@NonNull Long key, boolean selected) {
-                super.onItemStateChanged(key, selected);
-                if (key == holder.id) {
-                    if (selected) {
-                        holder.itemView.setForeground(mActivity.getDrawable(R.drawable.tank_selected_bg));
-                    } else {
-                        holder.itemView.setForeground(null);
-                    }
-                }
-            }
-        });
+//        mSelectionTracker.addObserver(new SelectionTracker.SelectionObserver<Long>() {
+//            @Override
+//            public void onItemStateChanged(@NonNull Long key, boolean selected) {
+//                super.onItemStateChanged(key, selected);
+//                if (key == holder.id) {
+//                    if (selected) {
+//                        holder.itemView.setForeground(mActivity.getDrawable(R.drawable.tank_selected_bg));
+//                    } else {
+//                        holder.itemView.setForeground(null);
+//                    }
+//                }
+//            }
+//        });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mActionMode == null) {
-                    notifyListeners(holder, tank, tank.getId());
-                }
+//                if (mActionMode == null) {
+                    notifyListeners(holder, reading, reading.readingId);
+//                }
             }
         });
 
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+        /*holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(final View v) {
-                if (mActionMode != null) {
+//                if (mActionMode != null) {
                     return false;
-                }
+//                }
 
                 mActionMode = ((AppCompatActivity) mActivity).startSupportActionMode(new ActionMode.Callback() {
                     @Override
@@ -136,18 +140,18 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
                                                 int i = 0;
                                                 for (Long id : selection) {
                                                     int pos = getPositionOfTank(id);
-                                                    tanksToDelete[i] = mTanks.get(pos);
+                                                    tanksToDelete[i] = mReadings.get(pos);
                                                     i++;
                                                 }
-                                                mTankListViewModel.deleteTanks(tanksToDelete);
+                                                mReadingsListViewModel.deleteTanks(tanksToDelete);
                                                 mode.finish();
                                             }
                                         })
                                         .setNegativeButton(android.R.string.cancel, null)
                                         .show();
                                 return true;
-                            // TODO: duplicate
-                            // TODO: rename?
+                             TODO: duplicate
+                             TODO: rename?
                             default:
                                 return false;
                         }
@@ -161,26 +165,26 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
                 });
                 return true;
             }
-        });
+        });*/
     }
 
     @Override
-    public void onViewRecycled(@NonNull TankViewHolder holder) {
+    public void onViewRecycled(@NonNull ReadingsViewHolder holder) {
         super.onViewRecycled(holder);
         holder.showDefault();
     }
 
-    public void updateTanks(List<Tank> tanks) {
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new TankDiffCallback(mTanks, tanks));
-        mTanks.clear();
-        mTanks.addAll(tanks);
+    public void updateReadings(List<Readings> readings) {
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new ReadingsDiffCallback(mReadings, readings));
+        mReadings.clear();
+        mReadings.addAll(readings);
         diffResult.dispatchUpdatesTo(this);
     }
 
-    public int getPositionOfTank(long id) {
-        for (int i = 0; i < mTanks.size(); i++) {
-            Tank image = mTanks.get(i);
-            if (image.getId() == id) {
+    public int getPositionOfReadings(long id) {
+        for (int i = 0; i < mReadings.size(); i++) {
+            Readings reading = mReadings.get(i);
+            if (reading.readingId == id) {
                 return i;
             }
         }
@@ -189,7 +193,7 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
 
     @Override
     public int getItemCount() {
-        return mTanks.size();
+        return mReadings.size();
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -200,13 +204,13 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
         clickListeners.remove(listener);
     }
 
-    private void notifyListeners(TankViewHolder vh, Tank tank, long id) {
+    private void notifyListeners(ReadingsViewHolder vh, Readings reading, long id) {
         for (OnItemClickListener listener : clickListeners) {
-            listener.onClick(vh, tank, id);
+            listener.onClick(vh, reading, id);
         }
     }
 
-    public void setSelectionTracker(SelectionTracker<Long> selectionTracker) {
+    /*public void setSelectionTracker(SelectionTracker<Long> selectionTracker) {
         this.mSelectionTracker = selectionTracker;
         this.mSelectionTracker.addObserver(new SelectionTracker.SelectionObserver() {
             @Override
@@ -219,15 +223,15 @@ public class TankListAdapter extends RecyclerView.Adapter<TankViewHolder> {
                 }
             }
         });
-    }
+    }*/
 
     public interface OnItemClickListener {
-        void onClick(TankViewHolder vh, Tank tank, long id);
+        void onClick(ReadingsViewHolder vh, Readings reading, long id);
     }
 
     @Override
     public long getItemId(int position) {
-        return mTanks.get((int)position).getId();
+        return mReadings.get(position).readingId;
     }
 
 }

@@ -5,7 +5,7 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ui.TankDetailActivity">
+    tools:context=".view.ui.tank.TankDetailActivity">
 
     <EditText
         android:id="@+id/tank_name_edit_text"

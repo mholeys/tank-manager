@@ -1,4 +1,4 @@
-package uk.co.mholeys.android.tankmanager;
+package uk.co.mholeys.android.tankmanager.view.ui.maintenance;
 
 import androidx.fragment.app.Fragment;
 

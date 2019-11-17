@@ -1,7 +1,5 @@
-package uk.co.mholeys.android.tankmanager.view.ui.maintenance;
+package uk.co.mholeys.android.tankmanager.view.ui.maintenance.history;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import uk.co.mholeys.android.tankmanager.AMaintenanceTabFragment;
+import uk.co.mholeys.android.tankmanager.view.ui.maintenance.AMaintenanceTabFragment;
 import uk.co.mholeys.android.tankmanager.R;
 
 /**
