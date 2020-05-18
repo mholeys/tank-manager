@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".view.ui.MaintenanceActivity"></activity>
         <activity android:name=".view.ui.tank.TankDetailActivity" />
-        <activity android:name=".view.ui.tank.TankEditActivity" />
+        <activity android:name=".view.ui.tank.TankEditActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".view.ui.tank.TankListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

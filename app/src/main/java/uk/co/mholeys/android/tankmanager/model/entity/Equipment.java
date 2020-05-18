@@ -20,7 +20,7 @@ import androidx.room.PrimaryKey;
 public class Equipment {
 
     @PrimaryKey
-    public int equipmentId;
+    public long equipmentId;
 
     @ColumnInfo(name = "name")
     public String name;
@@ -29,6 +29,6 @@ public class Equipment {
     public String type;
 
     @ColumnInfo(name = "tankId")
-    public int tankId;
+    public long tankId;
 
 }

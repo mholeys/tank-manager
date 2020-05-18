@@ -7,6 +7,15 @@
         <item quantity="one">1 tank deleted.</item>
         <item quantity="other">%d tanks deleted.</item>
     </plurals>
+    <plurals name="confirm_delete_readings">
+        <item quantity="one">Are you sure you wish to delete the readings and all data?</item>
+        <item quantity="other">Are you sure you wish to delete these readings and their data?</item>
+    </plurals>
+    <plurals name="readings_deleted">
+        <item quantity="one">1 reading deleted.</item>
+        <item quantity="other">%d readings deleted.</item>
+    </plurals>
+
     <string name="default_tank_title">Loading tank</string>
     <string name="default_tank_info">Loading</string>
     <string name="no_tanks_yet">No Tanks Yet</string>
@@ -15,6 +24,7 @@
 
     <string name="app_name">Tank Manager</string>
     <string name="remove_tank">Remove tank</string>
+    <string name="remove_readings">Remove readings</string>
     <string name="search">Search</string>
     <string name="no_tanks_found">No tanks found</string>
     <string name="tank_default_title">My Tank</string>
@@ -41,6 +51,8 @@
     <string name="readings_fragment_tab_text">Readings</string>
     <string name="maintenace_history_tab_text">Maintenance</string>
     <string name="equipment_fragment_tab_name">Equipment</string>
+    <string name="add_reading_button_text">Add Reading</string>
+    <string name="zero">0</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="tank_types_array">

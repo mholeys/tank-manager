@@ -22,7 +22,7 @@ import java.time.OffsetDateTime;
 public class Readings {
 
     @PrimaryKey
-    public int readingId;
+    public long readingId;
 
     @ColumnInfo(name = "date_taken")
     public OffsetDateTime date;
@@ -32,7 +32,7 @@ public class Readings {
     public float KH;
     public float O2;
     public float CO2;
-    public float amonia;
+    public float ammonia;
     public float nitrite;
     public float nitrate;
     public float magnesium;
@@ -43,6 +43,6 @@ public class Readings {
     public float iron;
 
     @ColumnInfo(name = "tankId")
-    public int tankId;
+    public long tankId;
 
 }

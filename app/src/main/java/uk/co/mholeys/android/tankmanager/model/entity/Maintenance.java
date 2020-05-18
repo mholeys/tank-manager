@@ -24,7 +24,7 @@ import uk.co.mholeys.android.tankmanager.model.EMaintenanceType;
 public class Maintenance {
 
     @PrimaryKey
-    public int maintenanceId;
+    public long maintenanceId;
 
     @ColumnInfo(name = "date_done")
     public OffsetDateTime date;
@@ -34,6 +34,6 @@ public class Maintenance {
     public String notes;
 
     @ColumnInfo(name = "tankId")
-    public int tankId;
+    public long tankId;
 
 }

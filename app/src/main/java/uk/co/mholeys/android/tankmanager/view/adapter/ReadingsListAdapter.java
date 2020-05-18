@@ -36,9 +36,9 @@ public class ReadingsListAdapter extends RecyclerView.Adapter<ReadingsViewHolder
     private final long mTankId;
     private FragmentActivity mActivity;
     private List<Readings> mReadings = new ArrayList<>();
-//    private ActionMode mActionMode;
+    private ActionMode mActionMode;
     private List<OnItemClickListener> clickListeners = new ArrayList<>();
-//    private SelectionTracker<Long> mSelectionTracker;
+    private SelectionTracker<Long> mSelectionTracker;
 
     public ReadingsListAdapter(FragmentActivity activity, ReadingsListViewModel readingsListViewModel, long tankId) {
         super();
@@ -64,56 +64,69 @@ public class ReadingsListAdapter extends RecyclerView.Adapter<ReadingsViewHolder
         // TODO: update to readings
         final Readings reading = mReadings.get(position);
         holder.id = reading.readingId;
-//        holder.mTank = mTank;
-//        holder.mTitleTextView.setText(reading.PH + "");
 
-//        holder.mInfoTextView.setText(mTank.size + " " + tank.units + " ("  + tank.type.toString(mActivity.getResources()) + ")");
+        holder.mReading = reading;
+
+        holder.mAmmoniaValueText.setText(String.valueOf(reading.ammonia));
+        holder.mPhValueText.setText(String.valueOf(reading.PH));
+        holder.mNitriteValueText.setText(String.valueOf(reading.nitrite));
+        holder.mNitrateValueText.setText(String.valueOf(reading.nitrate));
+        holder.mKhValueText.setText(String.valueOf(reading.KH));
+        holder.mGhValueText.setText(String.valueOf(reading.GH));
+        holder.mSalinityValueText.setText(String.valueOf(reading.salinity));
+        holder.mPhosphateValueText.setText(String.valueOf(reading.phosphate));
+        holder.mIronValueText.setText(String.valueOf(reading.iron));
+        holder.mCopperValueText.setText(String.valueOf(reading.copper));
+        holder.mMagnesiumValueText.setText(String.valueOf(reading.magnesium));
+        holder.mCalciumValueText.setText(String.valueOf(reading.calcium));
+        holder.mCO2ValueText.setText(String.valueOf(reading.CO2));
+        holder.mO2ValueText.setText(String.valueOf(reading.O2));
 
 
         // Draw selected border if selected
-//        if (mSelectionTracker.isSelected(tank.getId())) {
-//            holder.itemView.setForeground(mActivity.getDrawable(R.drawable.tank_selected_bg));
-//        } else {
-//            holder.itemView.setForeground(null);
-//        }
+        if (mSelectionTracker.isSelected(reading.readingId)) {
+            holder.itemView.setForeground(mActivity.getDrawable(R.drawable.tank_selected_bg));
+        } else {
+            holder.itemView.setForeground(null);
+        }
 
         // Keep selection border up-to-date
-//        mSelectionTracker.addObserver(new SelectionTracker.SelectionObserver<Long>() {
-//            @Override
-//            public void onItemStateChanged(@NonNull Long key, boolean selected) {
-//                super.onItemStateChanged(key, selected);
-//                if (key == holder.id) {
-//                    if (selected) {
-//                        holder.itemView.setForeground(mActivity.getDrawable(R.drawable.tank_selected_bg));
-//                    } else {
-//                        holder.itemView.setForeground(null);
-//                    }
-//                }
-//            }
-//        });
+        mSelectionTracker.addObserver(new SelectionTracker.SelectionObserver<Long>() {
+            @Override
+            public void onItemStateChanged(@NonNull Long key, boolean selected) {
+                super.onItemStateChanged(key, selected);
+                if (key == holder.id) {
+                    if (selected) {
+                        holder.itemView.setForeground(mActivity.getDrawable(R.drawable.tank_selected_bg));
+                    } else {
+                        holder.itemView.setForeground(null);
+                    }
+                }
+            }
+        });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (mActionMode == null) {
+                if (mActionMode == null) {
                     notifyListeners(holder, reading, reading.readingId);
-//                }
+                }
             }
         });
 
 
-        /*holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(final View v) {
-//                if (mActionMode != null) {
+                if (mActionMode != null) {
                     return false;
-//                }
+                }
 
                 mActionMode = ((AppCompatActivity) mActivity).startSupportActionMode(new ActionMode.Callback() {
                     @Override
                     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                         MenuInflater inflater = mode.getMenuInflater();
-                        inflater.inflate(R.menu.menu_tank_list_context_action, menu);
+                        inflater.inflate(R.menu.menu_readings_list_context_action, menu);
                         return true;
                     }
 
@@ -128,30 +141,29 @@ public class ReadingsListAdapter extends RecyclerView.Adapter<ReadingsViewHolder
                         switch (item.getItemId()) {
                             case R.id.action_bar_delete:
                                 new AlertDialog.Builder(mActivity)
-                                        .setTitle(R.string.remove_tank)
-                                        .setMessage(mActivity.getResources().getQuantityString(R.plurals.confirm_delete_tank, selection.size()))
+                                        .setTitle(R.string.remove_readings)
+                                        .setMessage(mActivity.getResources().getQuantityString(R.plurals.confirm_delete_readings, selection.size()))
                                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 Toast.makeText(mActivity.getApplicationContext(),
-                                                        mActivity.getResources().getQuantityString(R.plurals.tanks_deleted, selection.size(), selection.size()),
+                                                        mActivity.getResources().getQuantityString(R.plurals.readings_deleted, selection.size(), selection.size()),
                                                         Toast.LENGTH_LONG).show();
-                                                Tank[] tanksToDelete = new Tank[selection.size()];
+                                                Readings[] readingsToDelete = new Readings[selection.size()];
                                                 int i = 0;
                                                 for (Long id : selection) {
-                                                    int pos = getPositionOfTank(id);
-                                                    tanksToDelete[i] = mReadings.get(pos);
+                                                    int pos = getPositionOfReadings(id);
+                                                    readingsToDelete[i] = mReadings.get(pos);
                                                     i++;
                                                 }
-                                                mReadingsListViewModel.deleteTanks(tanksToDelete);
+                                                mReadingsListViewModel.deleteReadings(readingsToDelete);
                                                 mode.finish();
                                             }
                                         })
                                         .setNegativeButton(android.R.string.cancel, null)
                                         .show();
                                 return true;
-                             TODO: duplicate
-                             TODO: rename?
+//                             TODO: duplicate/rename/edit?
                             default:
                                 return false;
                         }
@@ -165,7 +177,7 @@ public class ReadingsListAdapter extends RecyclerView.Adapter<ReadingsViewHolder
                 });
                 return true;
             }
-        });*/
+        });
     }
 
     @Override

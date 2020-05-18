@@ -67,7 +67,7 @@
 
     <Button
         android:id="@+id/add_tank_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Add"
