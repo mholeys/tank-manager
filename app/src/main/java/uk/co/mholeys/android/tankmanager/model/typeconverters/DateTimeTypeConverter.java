@@ -11,7 +11,7 @@ public class DateTimeTypeConverter {
 
     @TypeConverter
     public OffsetDateTime toOffsetDateTime(String value) {
-        return (OffsetDateTime) formatter.parse(value);
+        return OffsetDateTime.from(formatter.parse(value));
     }
 
     @TypeConverter

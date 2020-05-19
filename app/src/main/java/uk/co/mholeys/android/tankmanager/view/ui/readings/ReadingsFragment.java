@@ -81,6 +81,7 @@ public class ReadingsFragment extends AMaintenanceTabFragment {
         }
 
         mViewModel = ViewModelProviders.of(this).get(ReadingsListViewModel.class);
+        mViewModel.setup(tankId);
 
         mLayoutManager = new GridLayoutManager(getContext(), 1);
 

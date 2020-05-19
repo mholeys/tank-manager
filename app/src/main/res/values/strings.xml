@@ -91,6 +91,7 @@
     <string name="o2_without_unit">O2</string>
     <string name="no_readings_yet">No readings yet</string>
     <string name="date_taken">Date Taken</string>
+    <string name="date_taken_placeholder">Date: %1$s</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="tank_types_array">

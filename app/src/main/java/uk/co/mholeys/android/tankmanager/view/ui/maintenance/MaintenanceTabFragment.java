@@ -24,7 +24,7 @@ public class MaintenanceTabFragment extends Fragment {
     private static final String ARG_TANK_ID = "MAINTENANCE_TAB_FRAGMENT._ARG_TANK_ID";
 
     private MaintenanceTabViewModel mViewModel;
-    private long tankId;
+    private long mTankId;
     private ViewPager viewPager;
     private MaintenancePagerAdapter maintenancePagerAdapter;
 
@@ -46,7 +46,11 @@ public class MaintenanceTabFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        maintenancePagerAdapter = new MaintenancePagerAdapter(getChildFragmentManager(), tankId, getResources());
+        if (getArguments() != null) {
+            mTankId = getArguments().getLong(ARG_TANK_ID);
+        }
+
+        maintenancePagerAdapter = new MaintenancePagerAdapter(getChildFragmentManager(), mTankId, getResources());
         viewPager = view.findViewById(R.id.pager);
         viewPager.setAdapter(maintenancePagerAdapter);
 

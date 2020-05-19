@@ -5,5 +5,5 @@
     <dimen name="list_item_tank_height">60dp</dimen>
     <dimen name="list_item_tank_image_height">60dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="list_item_reading_height">245dp</dimen>
+    <dimen name="list_item_reading_height">260dp</dimen>
 </resources>

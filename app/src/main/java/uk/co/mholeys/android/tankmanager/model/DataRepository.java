@@ -130,12 +130,22 @@ public class DataRepository {
         return readingDao.get(readingId);
     }
 
-    public void deleteReadings(Readings[] readingsToDelete) {
-        readingDao.deleteMany(readingsToDelete);
+    public void deleteReadings(final Readings[] readingsToDelete) {
+        mExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                readingDao.deleteMany(readingsToDelete);
+            }
+        });
     }
 
-    public void updateReadingOfTank(long tankId, Readings reading) {
-        reading.tankId = tankId;
-        readingDao.update(reading);
+    public void updateReadingOfTank(final long tankId, final Readings reading) {
+        mExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                reading.tankId = tankId;
+                readingDao.update(reading);
+            }
+        });
     }
 }

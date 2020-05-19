@@ -32,6 +32,7 @@ public class ReadingsViewHolder extends RecyclerView.ViewHolder {
     public final TextView mCalciumValueText;
     public final TextView mCO2ValueText;
     public final TextView mO2ValueText;
+    public final TextView mDateTakenText;
 
     public Readings mReading;
 
@@ -52,6 +53,7 @@ public class ReadingsViewHolder extends RecyclerView.ViewHolder {
         mCalciumValueText = itemView.findViewById(R.id.calcium_value_text);
         mCO2ValueText = itemView.findViewById(R.id.co2_value_text);
         mO2ValueText = itemView.findViewById(R.id.o2_value_text);
+        mDateTakenText = itemView.findViewById(R.id.date_text);
 
         mItemDetails = new ItemDetailsLookup.ItemDetails<Long>() {
             @Override

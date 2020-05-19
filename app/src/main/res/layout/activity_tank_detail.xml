@@ -80,15 +80,31 @@
 <!--            android:layout_height="wrap_content"-->
 <!--            android:orientation="vertical">-->
 
-    <fragment
-        android:id="@+id/maintenance_fragment"
-        android:name="uk.co.mholeys.android.tankmanager.view.ui.maintenance.MaintenanceTabFragment"
-        android:layout_width="match_parent"
+<!--        <ViewGroup-->
+<!--            android:id="@+id/maintenance_fragment"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/divider" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/maintenance_fragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/divider" />-->
+    <LinearLayout
+        android:id="@+id/maintenance_fragment_holder"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider">
 
-<!--        </LinearLayout>-->
+    </LinearLayout>
+
+    <!--        </LinearLayout>-->
 <!--    </ScrollView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

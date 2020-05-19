@@ -15,11 +15,11 @@ import androidx.room.PrimaryKey;
                 onDelete = ForeignKey.CASCADE
         ),
         indices = {
-                @Index(value = "tankId", unique = true)
+                @Index(value = "tankId")
         })
 public class Equipment {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public long equipmentId;
 
     @ColumnInfo(name = "name")

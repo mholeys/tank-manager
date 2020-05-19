@@ -17,11 +17,11 @@ import java.time.OffsetDateTime;
                 onDelete = ForeignKey.CASCADE
         ),
         indices = {
-                @Index(value = "tankId", unique = true)
+                @Index(value = "tankId")
         })
 public class Readings {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public long readingId;
 
     @ColumnInfo(name = "date_taken")

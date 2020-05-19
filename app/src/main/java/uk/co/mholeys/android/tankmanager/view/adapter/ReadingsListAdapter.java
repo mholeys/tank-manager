@@ -19,6 +19,7 @@ import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,6 +82,8 @@ public class ReadingsListAdapter extends RecyclerView.Adapter<ReadingsViewHolder
         holder.mCalciumValueText.setText(String.valueOf(reading.calcium));
         holder.mCO2ValueText.setText(String.valueOf(reading.CO2));
         holder.mO2ValueText.setText(String.valueOf(reading.O2));
+
+        holder.mDateTakenText.setText(mActivity.getResources().getString(R.string.date_taken_placeholder, reading.date.format(DateTimeFormatter.ISO_LOCAL_DATE)));
 
 
         // Draw selected border if selected

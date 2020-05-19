@@ -19,11 +19,11 @@ import uk.co.mholeys.android.tankmanager.model.EMaintenanceType;
                 onDelete = ForeignKey.CASCADE
         ),
         indices = {
-                @Index(value = "tankId", unique = true)
+                @Index(value = "tankId")
         })
 public class ScheduledMaintenance {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public long scheduleId;
 
     @ColumnInfo(name = "date_scheduled")

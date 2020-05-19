@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "110ef441cd0fb8b522529f856fdfb00c",
+    "identityHash": "9dc8628c1a32a91e544235525323cfc2",
     "entities": [
       {
         "tableName": "Tank",
@@ -50,7 +50,7 @@
       },
       {
         "tableName": "equipment",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`equipmentId` INTEGER NOT NULL, `name` TEXT, `type` TEXT, `tankId` INTEGER NOT NULL, PRIMARY KEY(`equipmentId`), FOREIGN KEY(`tankId`) REFERENCES `Tank`(`tId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`equipmentId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `type` TEXT, `tankId` INTEGER NOT NULL, FOREIGN KEY(`tankId`) REFERENCES `Tank`(`tId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "equipmentId",
@@ -81,16 +81,16 @@
           "columnNames": [
             "equipmentId"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [
           {
             "name": "index_equipment_tankId",
-            "unique": true,
+            "unique": false,
             "columnNames": [
               "tankId"
             ],
-            "createSql": "CREATE UNIQUE INDEX `index_equipment_tankId` ON `${TABLE_NAME}` (`tankId`)"
+            "createSql": "CREATE  INDEX `index_equipment_tankId` ON `${TABLE_NAME}` (`tankId`)"
           }
         ],
         "foreignKeys": [
@@ -109,7 +109,7 @@
       },
       {
         "tableName": "maintenance",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`maintenanceId` INTEGER NOT NULL, `date_done` TEXT, `type` TEXT, `notes` TEXT, `tankId` INTEGER NOT NULL, PRIMARY KEY(`maintenanceId`), FOREIGN KEY(`tankId`) REFERENCES `Tank`(`tId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`maintenanceId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date_done` TEXT, `type` TEXT, `notes` TEXT, `tankId` INTEGER NOT NULL, FOREIGN KEY(`tankId`) REFERENCES `Tank`(`tId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "maintenanceId",
@@ -146,16 +146,16 @@
           "columnNames": [
             "maintenanceId"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [
           {
             "name": "index_maintenance_tankId",
-            "unique": true,
+            "unique": false,
             "columnNames": [
               "tankId"
             ],
-            "createSql": "CREATE UNIQUE INDEX `index_maintenance_tankId` ON `${TABLE_NAME}` (`tankId`)"
+            "createSql": "CREATE  INDEX `index_maintenance_tankId` ON `${TABLE_NAME}` (`tankId`)"
           }
         ],
         "foreignKeys": [
@@ -174,7 +174,7 @@
       },
       {
         "tableName": "scheduled_maintenance",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scheduleId` INTEGER NOT NULL, `date_scheduled` TEXT, `type` TEXT, `notes` TEXT, `tankId` INTEGER NOT NULL, PRIMARY KEY(`scheduleId`), FOREIGN KEY(`tankId`) REFERENCES `Tank`(`tId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`scheduleId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date_scheduled` TEXT, `type` TEXT, `notes` TEXT, `tankId` INTEGER NOT NULL, FOREIGN KEY(`tankId`) REFERENCES `Tank`(`tId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "scheduleId",
@@ -211,16 +211,16 @@
           "columnNames": [
             "scheduleId"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [
           {
             "name": "index_scheduled_maintenance_tankId",
-            "unique": true,
+            "unique": false,
             "columnNames": [
               "tankId"
             ],
-            "createSql": "CREATE UNIQUE INDEX `index_scheduled_maintenance_tankId` ON `${TABLE_NAME}` (`tankId`)"
+            "createSql": "CREATE  INDEX `index_scheduled_maintenance_tankId` ON `${TABLE_NAME}` (`tankId`)"
           }
         ],
         "foreignKeys": [
@@ -239,7 +239,7 @@
       },
       {
         "tableName": "readings",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`readingId` INTEGER NOT NULL, `date_taken` TEXT, `PH` REAL NOT NULL, `GH` REAL NOT NULL, `KH` REAL NOT NULL, `O2` REAL NOT NULL, `CO2` REAL NOT NULL, `ammonia` REAL NOT NULL, `nitrite` REAL NOT NULL, `nitrate` REAL NOT NULL, `magnesium` REAL NOT NULL, `phosphate` REAL NOT NULL, `calcium` REAL NOT NULL, `copper` REAL NOT NULL, `salinity` REAL NOT NULL, `iron` REAL NOT NULL, `tankId` INTEGER NOT NULL, PRIMARY KEY(`readingId`), FOREIGN KEY(`tankId`) REFERENCES `Tank`(`tId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`readingId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date_taken` TEXT, `PH` REAL NOT NULL, `GH` REAL NOT NULL, `KH` REAL NOT NULL, `O2` REAL NOT NULL, `CO2` REAL NOT NULL, `ammonia` REAL NOT NULL, `nitrite` REAL NOT NULL, `nitrate` REAL NOT NULL, `magnesium` REAL NOT NULL, `phosphate` REAL NOT NULL, `calcium` REAL NOT NULL, `copper` REAL NOT NULL, `salinity` REAL NOT NULL, `iron` REAL NOT NULL, `tankId` INTEGER NOT NULL, FOREIGN KEY(`tankId`) REFERENCES `Tank`(`tId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "readingId",
@@ -348,16 +348,16 @@
           "columnNames": [
             "readingId"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [
           {
             "name": "index_readings_tankId",
-            "unique": true,
+            "unique": false,
             "columnNames": [
               "tankId"
             ],
-            "createSql": "CREATE UNIQUE INDEX `index_readings_tankId` ON `${TABLE_NAME}` (`tankId`)"
+            "createSql": "CREATE  INDEX `index_readings_tankId` ON `${TABLE_NAME}` (`tankId`)"
           }
         ],
         "foreignKeys": [
@@ -378,7 +378,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '110ef441cd0fb8b522529f856fdfb00c')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9dc8628c1a32a91e544235525323cfc2')"
     ]
   }
 }

@@ -10,6 +10,7 @@ import uk.co.mholeys.android.tankmanager.model.ETankType;
 public class Tank {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "tId")
     public long tId = 0;
 
     @ColumnInfo(name = "name")

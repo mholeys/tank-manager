@@ -2,6 +2,8 @@ package uk.co.mholeys.android.tankmanager.view.ui.tank;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import uk.co.mholeys.android.tankmanager.R;
 import uk.co.mholeys.android.tankmanager.model.entity.Tank;
+import uk.co.mholeys.android.tankmanager.view.ui.maintenance.MaintenanceTabFragment;
 import uk.co.mholeys.android.tankmanager.viewmodel.TankListViewModel;
 
 public class TankDetailActivity extends AppCompatActivity {
@@ -38,6 +41,14 @@ public class TankDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         mTankId = intent.getLongExtra(EXTRA_ID, 0);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        MaintenanceTabFragment maintenanceTabFragment = MaintenanceTabFragment.newInstance(mTankId);
+        fragmentTransaction.add(R.id.maintenance_fragment_holder, maintenanceTabFragment);
+        fragmentTransaction.commit();
+
         setupViewModel();
 
         mTankTitleTextView = findViewById(R.id.tank_title_text_view);
