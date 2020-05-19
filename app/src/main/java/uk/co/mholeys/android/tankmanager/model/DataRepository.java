@@ -112,4 +112,30 @@ public class DataRepository {
     public LiveData<ScheduledMaintenance> getNextWaterChange(long tankId) {
         return scheduledMaintenanceDao.getNextTypeOnTank(tankId, EMaintenanceType.WATER_CHANGE);
     }
+
+    public MutableLiveData<Long> insertReadings(final Readings readings) {
+        final MutableLiveData<Long> readingsIdLiveData = new MutableLiveData<>();
+        mExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                long readingsId = readingDao.insert(readings);
+                readings.readingId = readingsId;
+                readingsIdLiveData.postValue(readingsId);
+            }
+        });
+        return readingsIdLiveData;
+    }
+
+    public LiveData<Readings> getTankReading(LiveData<Tank> mTank, long readingId) {
+        return readingDao.get(readingId);
+    }
+
+    public void deleteReadings(Readings[] readingsToDelete) {
+        readingDao.deleteMany(readingsToDelete);
+    }
+
+    public void updateReadingOfTank(long tankId, Readings reading) {
+        reading.tankId = tankId;
+        readingDao.update(reading);
+    }
 }

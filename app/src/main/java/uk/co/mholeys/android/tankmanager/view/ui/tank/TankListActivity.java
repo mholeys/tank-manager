@@ -22,7 +22,7 @@ import java.util.List;
 
 import uk.co.mholeys.android.tankmanager.R;
 import uk.co.mholeys.android.tankmanager.model.entity.Tank;
-import uk.co.mholeys.android.tankmanager.view.adapter.SelectionAdapter;
+import uk.co.mholeys.android.tankmanager.view.adapter.TankSelectionAdapter;
 import uk.co.mholeys.android.tankmanager.view.adapter.TankListAdapter;
 import uk.co.mholeys.android.tankmanager.view.adapter.TankViewHolder;
 import uk.co.mholeys.android.tankmanager.viewmodel.TankListViewModel;
@@ -63,12 +63,12 @@ public class TankListActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         // Selection tracker
-        mSelectionTracker = new SelectionTracker.Builder<>("my_selection",
+        mSelectionTracker = new SelectionTracker.Builder<>("tank_selection",
                 mRecyclerView,
-                new SelectionAdapter.KeyProvider(mRecyclerView, mAdapter),
-                new SelectionAdapter.DetailsLookup(mRecyclerView, mAdapter),
+                new TankSelectionAdapter.KeyProvider(mRecyclerView, mAdapter),
+                new TankSelectionAdapter.DetailsLookup(mRecyclerView, mAdapter),
                 StorageStrategy.createLongStorage())
-                .withSelectionPredicate(new SelectionAdapter.Predicate())
+                .withSelectionPredicate(new TankSelectionAdapter.Predicate())
                 .build();
 
         mAdapter.setSelectionTracker(mSelectionTracker);
@@ -120,7 +120,6 @@ public class TankListActivity extends AppCompatActivity {
         } else {
             mViewModel.getTanksToDisplay().observe(this, tanksObserver);
         }
-
     }
 
     @Override

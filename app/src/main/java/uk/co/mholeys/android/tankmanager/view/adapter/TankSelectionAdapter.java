@@ -10,7 +10,7 @@ import androidx.recyclerview.selection.ItemKeyProvider;
 import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SelectionAdapter {
+public class TankSelectionAdapter {
     public static class Predicate extends SelectionTracker.SelectionPredicate<Long> {
 
         @Override

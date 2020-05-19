@@ -222,7 +222,7 @@ public class ReadingsListAdapter extends RecyclerView.Adapter<ReadingsViewHolder
         }
     }
 
-    /*public void setSelectionTracker(SelectionTracker<Long> selectionTracker) {
+    public void setSelectionTracker(SelectionTracker<Long> selectionTracker) {
         this.mSelectionTracker = selectionTracker;
         this.mSelectionTracker.addObserver(new SelectionTracker.SelectionObserver() {
             @Override
@@ -235,7 +235,7 @@ public class ReadingsListAdapter extends RecyclerView.Adapter<ReadingsViewHolder
                 }
             }
         });
-    }*/
+    }
 
     public interface OnItemClickListener {
         void onClick(ReadingsViewHolder vh, Readings reading, long id);

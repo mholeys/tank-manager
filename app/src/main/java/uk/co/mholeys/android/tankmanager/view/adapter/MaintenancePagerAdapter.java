@@ -8,11 +8,10 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-import uk.co.mholeys.android.tankmanager.model.entity.Equipment;
 import uk.co.mholeys.android.tankmanager.view.ui.equipment.EquipmentFragment;
 import uk.co.mholeys.android.tankmanager.view.ui.maintenance.AMaintenanceTabFragment;
 import uk.co.mholeys.android.tankmanager.view.ui.maintenance.history.MaintenanceHistoryFragment;
-import uk.co.mholeys.android.tankmanager.view.ui.maintenance.readings.ReadingsFragment;
+import uk.co.mholeys.android.tankmanager.view.ui.readings.ReadingsFragment;
 
 public class MaintenancePagerAdapter extends FragmentPagerAdapter {
 

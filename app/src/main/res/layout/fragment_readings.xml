@@ -5,7 +5,7 @@
     android:id="@+id/reading_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ui.maintenance.readings.ReadingsFragment">
+    tools:context=".view.ui.readings.ReadingsFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/no_tanks_yet"
+        android:text="@string/no_readings_yet"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

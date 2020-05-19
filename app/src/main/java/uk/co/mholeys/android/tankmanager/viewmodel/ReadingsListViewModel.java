@@ -31,19 +31,15 @@ public class ReadingsListViewModel extends AndroidViewModel {
     }
 
     public LiveData<Readings> get(long readingId) {
-        Log.d(TAG, "insertReadings: Not implemented");
-        return null;
-//        return dataRepository.getTankReading(mTank, readingId);
+        return dataRepository.getTankReading(mTank, readingId);
     }
 
-    public MutableLiveData<Long> insertReading(Readings reading) {
-        Log.d(TAG, "insertReadings: Not implemented");
-        return null;
-//        return dataRepository.insertReadingOfTank(mTankId, reading);
+    public MutableLiveData<Long> insertReading(Readings readings) {
+        return dataRepository.insertReadings(readings);
     }
 
     public void deleteReadings(Readings[] readingsToDelete) {
-        Log.d(TAG, "deleteReadings: Not implemented");
+        dataRepository.deleteReadings(readingsToDelete);
     }
 
     public LiveData<List<Readings>> getReadingsToDisplay(String query) {
@@ -52,8 +48,7 @@ public class ReadingsListViewModel extends AndroidViewModel {
     }
 
     public void updateReadings(Readings reading) {
-        Log.d(TAG, "updateReadings: Not implemented");
-//        dataRepository.updateReadingOfTank(mTankId, reading);
+        dataRepository.updateReadingOfTank(mTankId, reading);
     }
 
     public void setup(long tankId) {

@@ -13,6 +13,8 @@
         <activity android:name=".view.ui.tank.TankDetailActivity" />
         <activity android:name=".view.ui.tank.TankEditActivity"
             android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".view.ui.readings.ReadingsEditActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".view.ui.tank.TankListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
