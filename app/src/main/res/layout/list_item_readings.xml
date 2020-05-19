@@ -5,11 +5,11 @@
     android:layout_height="@dimen/list_item_reading_height"
     android:orientation="vertical">
 
-    <View
-        android:id="@+id/divider3"
+    <TextView
+        android:id="@+id/date_text"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
+        android:layout_height="wrap_content"
+        android:text="@string/date_taken_placeholder" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -537,10 +537,9 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/divider4"
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_weight="1"
         android:background="?android:attr/listDivider" />
 
 </LinearLayout>
